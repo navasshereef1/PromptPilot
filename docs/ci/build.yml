@@ -1,0 +1,47 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build
+        shell: cmd
+        run: |
+          mkdir dist
+          call build.bat "%CD%\dist\PromptPilot.exe"
+
+      - name: Self-check
+        shell: pwsh
+        run: |
+          $result = "$env:RUNNER_TEMP\selftest.txt"
+          $p = Start-Process dist\PromptPilot.exe -ArgumentList '--data', "$env:RUNNER_TEMP\pp", '--selftest', $result -Wait -PassThru
+          Get-Content $result
+          if ($p.ExitCode -ne 0) { exit 1 }
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: PromptPilot
+          path: dist/PromptPilot.exe
+
+      - name: Attach to release
+        if: startsWith(github.ref, 'refs/tags/v')
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $hash = (Get-FileHash dist\PromptPilot.exe -Algorithm SHA256).Hash.ToLower()
+          "$hash  PromptPilot.exe" | Set-Content dist\PromptPilot.exe.sha256 -Encoding ascii
+          gh release view $env:GITHUB_REF_NAME 2>$null
+          if ($LASTEXITCODE -ne 0) { gh release create $env:GITHUB_REF_NAME --generate-notes }
+          gh release upload $env:GITHUB_REF_NAME dist\PromptPilot.exe dist\PromptPilot.exe.sha256 --clobber

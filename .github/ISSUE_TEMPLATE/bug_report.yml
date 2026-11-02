@@ -1,0 +1,39 @@
+name: Bug report
+description: Something isn't working
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Please remove API keys and private text from anything you paste here.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: "1. Open ChatGPT in Chrome\n2. Type some text\n3. Click Improve"
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: PromptPilot version
+    validations:
+      required: true
+  - type: input
+    id: where
+    attributes:
+      label: Windows version, browser or app, and AI provider
+      placeholder: Windows 11, Chrome, Groq
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: Errors from log.txt
+      description: Found in %APPDATA%\PromptPilot\log.txt
+      render: text
