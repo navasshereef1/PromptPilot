@@ -5,8 +5,8 @@
 <h1 align="center">PromptPilot</h1>
 
 <p align="center">
-  <strong>Rewrite your prompt right inside ChatGPT, Claude or Gemini, with one click.</strong><br>
-  Free, open source and light on your battery. For Windows 10 and 11.
+  <strong>Prompt engineering in a click.</strong><br>
+  Type anything into ChatGPT, Gemini or Claude. PromptPilot rearranges it into a properly engineered prompt, right in the chat box, in under 2 seconds.
 </p>
 
 <p align="center">
@@ -15,18 +15,71 @@
   <a href="https://buymeacoffee.com/navas1"><img src="https://img.shields.io/badge/Buy%20me%20a%20coffee-FFDD00?logo=buymeacoffee&logoColor=black" alt="Buy me a coffee"></a>
 </p>
 
-<p align="center"><img src="docs/images/studio.png" width="820" alt="PromptPilot Studio"></p>
+<p align="center"><img src="docs/images/demo.gif" width="760" alt="Type a rough prompt in ChatGPT, click Engineer, and it becomes a structured prompt"></p>
 
-## What it does
+<p align="center"><em>Real recording of the app. No extension, no copying and pasting, no new tab. Free for Windows 10 and 11.</em></p>
 
-Type a rough prompt in any AI chat. A small bar appears. Click once, and your text is replaced in the chat box.
+## Engineer mode: prompt engineering, without learning it
+
+Good prompts get far better answers, but most people don't have time to learn the craft. With Engineer, you don't need to. Write whatever is in your head, however rough. One click, and PromptPilot:
+
+- works out your real goal and what's missing
+- adds the context, task, format and success criteria
+- leaves `[blanks]` for details only you know, instead of inventing them
+- shapes it for the AI you're using
+
+The result replaces your text in the chat box, ready to send.
+
+| You type | One click on Engineer |
+|:---:|:---:|
+| <img src="docs/images/chatgpt-before.png" width="400" alt="Rough prompt typed in ChatGPT, with the PromptPilot bar on screen"> | <img src="docs/images/chatgpt-after.png" width="400" alt="The same chat box now holds a structured prompt"> |
+| <img src="docs/images/gemini-before.png" width="400" alt="Rough prompt typed in Gemini"> | <img src="docs/images/gemini-after.png" width="400" alt="Gemini's chat box now holds a structured prompt"> |
+
+<details>
+<summary><strong>See a full example</strong></summary>
+
+**You type:**
+
+> write ad copy for our new batch of the course so more people join
+
+**PromptPilot writes:**
+
+```text
+<context>
+We are launching a new batch of our course and need to increase enrollment. The target audience is [target audience description]. The course covers [course topic/skills] and is designed for [experience level].
+</context>
+
+<task>
+Write persuasive ad copy for the new course batch. The goal is to drive sign-ups by highlighting the key benefits and urgency of joining this specific cohort.
+</task>
+
+<format>
+- Provide three distinct variations: one focused on emotional transformation, one on practical skills/outcomes, and one on social proof/community.
+- Each variation should include a headline, a short body (2-3 sentences), and a clear call to action.
+- Keep the tone professional yet engaging.
+- State any assumptions made about the audience's pain points or desires.
+- Separate factual claims about the course from speculative benefits.
+- If specific details like pricing, deadlines, or instructor names are missing, use [placeholder] to indicate where they should be inserted.
+</format>
+```
+
+This output came straight from the app, written for Claude. It took 0.7 seconds.
+</details>
+
+**How fast is it?** With a free Groq key, the AI step took 0.7 to 1.8 seconds in testing on an ordinary laptop. The widget shows the time after each rewrite. Speed depends on the provider and your connection.
+
+**Give it context for even better prompts.** Add a few lines about you and your projects once, and Engineer uses them whenever they're relevant. Turn on *Ask me questions* and it will check what's missing first.
+
+## Three buttons, right beside your chat
 
 | Button | Hotkey | What happens |
 |---|---|---|
-| **Fix** | `Ctrl+Alt+1` | Corrects spelling and grammar only |
+| **Engineer** | `Ctrl+Alt+3` | Turns anything you type into a full prompt-engineered prompt |
 | **Improve** | `Ctrl+Alt+2` | Makes it clearer and more specific, in your voice |
-| **Engineer** | `Ctrl+Alt+3` | Works out the real goal and builds a full, structured prompt |
+| **Fix** | `Ctrl+Alt+1` | Corrects spelling and grammar only |
 | **Undo** | `Ctrl+Alt+Z` | Puts your original text back |
+
+The bar appears by itself when an AI chat is open, and stays out of the way otherwise.
 
 ## Quick start
 
@@ -45,7 +98,7 @@ irm https://raw.githubusercontent.com/navasshereef1/PromptPilot/main/install.ps1
 
 PromptPilot adds itself to the Start menu and to Settings > Apps, and lives in your system tray.
 
-## Features
+## More features
 
 **Rewriting**
 - 18 editable modes, including Critic, Pushback, Cost saver and Reverse prompt, plus any you write yourself
@@ -75,6 +128,8 @@ PromptPilot adds itself to the Start menu and to Settings > Apps, and lives in y
 <p align="center"><img src="docs/images/widget-styles.png" width="760" alt="Widget styles"></p>
 
 Choose a horizontal bar, vertical bar, mini icons, compact bubble, edge tab, or hotkeys only.
+
+<p align="center"><img src="docs/images/studio.png" width="760" alt="PromptPilot Studio, for writing and refining prompts in one place"></p>
 
 <table>
   <tr>
