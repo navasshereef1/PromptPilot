@@ -24,7 +24,7 @@ static class Install
             using (var k = Registry.CurrentUser.CreateSubKey(UninstallKey))
             {
                 k.SetValue("DisplayName", "PromptPilot");
-                k.SetValue("DisplayVersion", "2.0");
+                k.SetValue("DisplayVersion", "2.0.1");
                 k.SetValue("Publisher", "Navas Shereef");
                 k.SetValue("DisplayIcon", exe);
                 k.SetValue("InstallLocation", Path.GetDirectoryName(exe));

@@ -30,12 +30,20 @@ Type a rough prompt in any AI chat. A small bar appears. Click once, and your te
 
 ## Quick start
 
-1. Download `PromptPilot.exe` from the [latest release](https://github.com/navasshereef1/PromptPilot/releases/latest). There's nothing else to install.
-2. Run it. Windows may warn you because the app isn't code-signed yet: choose **More info > Run anyway**.
-3. On the **AI Providers** page, get a free key and paste it in. [Groq](https://console.groq.com/keys) is a good first choice.
-4. Open an AI chat, type something, and click **Improve**.
+**Install in PowerShell (recommended).** It installs for your account only, needs no admin rights, and checks the download's checksum. [Read the script](install.ps1) first if you like.
 
-PromptPilot then adds itself to the Start menu and to Settings > Apps, and lives in your system tray.
+```powershell
+irm https://raw.githubusercontent.com/navasshereef1/PromptPilot/main/install.ps1 | iex
+```
+
+**Or download it.** Get `PromptPilot.exe` from the [latest release](https://github.com/navasshereef1/PromptPilot/releases/latest) and run it. See [Why Windows may warn you](#why-windows-may-warn-you).
+
+**Then:**
+
+1. On the **AI Providers** page, get a free key and paste it in. [Groq](https://console.groq.com/keys) is a good first choice.
+2. Open an AI chat, type something, and click **Improve**.
+
+PromptPilot adds itself to the Start menu and to Settings > Apps, and lives in your system tray.
 
 ## Features
 
@@ -101,6 +109,18 @@ Read the full [privacy notes](PRIVACY.md).
 It uses no browser extension. When you click, PromptPilot copies the text from the focused box, sends it to your AI provider, checks that your text hasn't changed, and pastes the result. Your clipboard is put back afterwards. If you edited the text or switched window while it was working, your text is left alone and the result goes to your clipboard.
 
 The modes aren't trained models. Each is a written instruction you can read and edit on the **Modes** page. The ones here are based on [this review of what the evidence says](docs/TECHNIQUES.md), including which popular tricks don't work.
+
+## Why Windows may warn you
+
+SmartScreen warns about downloaded apps that have no paid code-signing certificate or download history yet. If you see it, choose **More info > Run anyway**. Some antivirus tools may also question the app, because it presses keys and uses the clipboard, which is how it replaces your text. [Report a false alarm](https://github.com/navasshereef1/PromptPilot/issues) if you get one.
+
+You don't have to take this on trust:
+
+- All the source code is public, and you can build it yourself with `build.bat`.
+- Releases are built by GitHub from that source, with a public record you can verify: `gh attestation verify PromptPilot.exe --repo navasshereef1/PromptPilot`
+- Each release lists its SHA-256 checksum.
+
+See the [code signing policy](docs/CODE_SIGNING.md).
 
 ## Known limits
 

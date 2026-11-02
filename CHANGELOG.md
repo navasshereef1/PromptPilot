@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.1
+
+- Releases are now built by GitHub from the public source, with a verifiable record
+- Added version details and a Windows application manifest to the `.exe`
+- New one-line PowerShell install that checks the download's checksum
+
 ## 2.0.0
 
 First public release.

@@ -8,6 +8,8 @@ on:
 
 permissions:
   contents: write
+  id-token: write
+  attestations: write
 
 jobs:
   build:
@@ -34,7 +36,13 @@ jobs:
           name: PromptPilot
           path: dist/PromptPilot.exe
 
-      - name: Attach to release
+      - name: Record where this build came from
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: dist/PromptPilot.exe
+
+      - name: Publish release
         if: startsWith(github.ref, 'refs/tags/v')
         shell: pwsh
         env:
@@ -42,6 +50,7 @@ jobs:
         run: |
           $hash = (Get-FileHash dist\PromptPilot.exe -Algorithm SHA256).Hash.ToLower()
           "$hash  PromptPilot.exe" | Set-Content dist\PromptPilot.exe.sha256 -Encoding ascii
+          $global:LASTEXITCODE = 0
           gh release view $env:GITHUB_REF_NAME 2>$null
-          if ($LASTEXITCODE -ne 0) { gh release create $env:GITHUB_REF_NAME --generate-notes }
+          if ($LASTEXITCODE -ne 0) { gh release create $env:GITHUB_REF_NAME --title "PromptPilot $($env:GITHUB_REF_NAME.TrimStart('v'))" --notes-file .github/release-notes.md }
           gh release upload $env:GITHUB_REF_NAME dist\PromptPilot.exe dist\PromptPilot.exe.sha256 --clobber

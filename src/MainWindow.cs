@@ -1135,7 +1135,7 @@ partial class MainWindow : ThemedForm
             Ui.Btn("Open data folder", () => { try { Process.Start(Settings.Dir); } catch { } })));
         page.Hint("API keys are never exported.");
         page.Title("About");
-        page.Hint("PromptPilot 2.0 by Navas Shereef. Free and open source under the MIT licence.");
+        page.Hint("PromptPilot 2.0.1 by Navas Shereef. Free and open source under the MIT licence.");
         Action<string> open = url => { try { Process.Start(url); } catch { } };
         page.Add(Ui.Row(
             Ui.Btn("Buy me a coffee", () => open("https://buymeacoffee.com/navas1"), true),

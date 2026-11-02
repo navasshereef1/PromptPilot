@@ -16,4 +16,10 @@ Get-FileHash .\PromptPilot.exe -Algorithm SHA256
 
 Only download from this repository's Releases page. The app isn't code-signed yet, so Windows may show a warning. You can also read the source and build it yourself with `build.bat`.
 
+To confirm GitHub built a release from this repository's source:
+
+```bash
+gh attestation verify PromptPilot.exe --repo navasshereef1/PromptPilot
+```
+
 If you think an API key has leaked, revoke it on the provider's website and create a new one.
